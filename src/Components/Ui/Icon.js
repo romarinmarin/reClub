@@ -1,9 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Icon = ({ url, width,height, isLinked, linkedTo }) => {
+const CityLogo = ({ url, width, height, isLinked, linkedTo }) => {
   let html = (
-    <div className="img_cover" style={{ backgroundImage: `url(${url})`, height: `${height}`, width: `${width}`}} />
+    <div
+      className="img_cover"
+      style={{
+        backgroundImage: `url(${url})`,
+        height: `${height}`,
+        width: `${width}`
+      }}
+    />
   );
 
   if (isLinked) {
@@ -17,4 +24,4 @@ const Icon = ({ url, width,height, isLinked, linkedTo }) => {
   return <div>{html}</div>;
 };
 
-export default Icon;
+export default CityLogo;

@@ -3,7 +3,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import Icon from "./Ui/Icon";
+import CityLogo from "./Ui/Icon";
 
 const Header = () => {
   return (
@@ -19,7 +19,7 @@ const Header = () => {
       <Toolbar style={{ display: "flex" }}>
         <div style={{ flexGrow: 1 }}>
           <div className="header_logo">
-            <Icon
+            <CityLogo
               url="https://via.placeholder.com/75"
               width="75px"
               height="75px"
