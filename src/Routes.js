@@ -1,15 +1,14 @@
 import React from "react";
 import Layout from "./Components/Layout";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
 import Home from "./Components/Home/Home";
+import { Switch, Route } from "react-router-dom";
 
 const Routes = () => {
   return (
     <Layout>
-      <Header />
-      <Home />
-      <Footer />
+      <Switch>
+        <Route exact path="/" component={Home} />
+      </Switch>
     </Layout>
   );
 };
