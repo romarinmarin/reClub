@@ -1,7 +1,11 @@
 import React from "react";
 import { Tag } from "../../Ui/misc";
+import { firebaseMatches } from "../../../firebase";
 
 const MatchesHome = () => {
+  firebaseMatches.once("value").then(snapshot => {
+    console.log(snapshot.val());
+  });
   return (
     <div className="home_matches_wrapper">
       <div className="container">
