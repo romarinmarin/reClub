@@ -30,3 +30,20 @@ export const Tag = ({
     return innerHtml;
   }
 };
+
+export const firebaseLooper = snapshot => {
+  let data = [];
+  snapshot.forEach(childSnapshot => {
+    data.push(childSnapshot.val());
+  });
+  return data;
+};
+
+export const reverser = arr => {
+  let newArr = [];
+  for (let i = arr.length - 1; i > 0; i--) {
+    console.log("ok");
+    newArr.push(arr[i]);
+  }
+  return newArr;
+};

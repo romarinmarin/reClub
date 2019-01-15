@@ -1,18 +1,15 @@
 import React from "react";
 import { Tag } from "../../Ui/misc";
-import { firebaseMatches } from "../../../firebase";
+import MatchesList from "./MatchesList";
 
 const MatchesHome = () => {
-  firebaseMatches.once("value").then(snapshot => {
-    console.log(snapshot.val());
-  });
   return (
     <div className="home_matches_wrapper">
       <div className="container">
         <Tag background="#0e1731" fontSize="50px" color="#ffffff">
           Matches
         </Tag>
-
+        <MatchesList />
         <Tag
           background="#ffffff"
           fontSize="22px"
