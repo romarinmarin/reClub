@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Featured from "./Featured/Featured";
 import MatchesHome from "./matches";
+import MeetPlayers from "./MeetPlayers";
 
 class Home extends Component {
   render() {
@@ -10,6 +11,7 @@ class Home extends Component {
           <Featured />
         </div>
         <MatchesHome />
+        <MeetPlayers />
       </div>
     );
   }
