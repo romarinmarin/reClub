@@ -52,9 +52,7 @@ class Stripes extends Component {
             opacity: 1,
             rotate: [rotate],
             events: {
-              end() {
-                console.log("animation finished");
-              }
+              end() {}
             }
           }}
         >

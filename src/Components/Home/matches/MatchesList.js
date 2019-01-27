@@ -13,9 +13,9 @@ class MatchesList extends Component {
   }
   render() {
     let htmlBlocks = this.state.matches.map((match, i) => (
-      <div className="item">
+      <div className="item" key={i}>
         <div className="wrapper">
-          <Slide bottom key={i}>
+          <Slide bottom>
             <Match match={match} />
           </Slide>
         </div>

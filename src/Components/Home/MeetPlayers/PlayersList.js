@@ -46,9 +46,7 @@ class PlayersList extends Component {
             bottom: [bottom],
             timing: { duration: 500, ease: easePolyOut },
             events: {
-              end() {
-                console.log("animation finished");
-              }
+              end() {}
             }
           }}
         >
