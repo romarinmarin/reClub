@@ -112,7 +112,6 @@ class Form extends Component {
               value={this.state.name}
               onChange={this.handleChange}
             />
-            <div>{this.state.errorHtml}</div>
             <input
               disabled={!this.state.formValid}
               type="submit"
