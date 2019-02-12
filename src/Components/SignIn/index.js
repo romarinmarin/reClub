@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FormErrors from "../Ui/FormErrors";
-import firebase from "firebase";
+import { firebase } from "../../firebase";
 
 class SignIn extends Component {
   state = {
@@ -61,28 +61,35 @@ class SignIn extends Component {
   };
   render() {
     return (
-      <div style={{ marginTop: "100px" }}>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            onChange={this.handleChange}
-            type="text"
-            name="email"
-            placeholder="email"
-            value={this.state.email}
-          />
-          <input
-            onChange={this.handleChange}
-            name="password"
-            type="password"
-            placeholder="password"
-            value={this.state.password}
-          />
-          <input disabled={!this.state.formValid} type="submit" value="login" />
-          {this.state.loginError ? (
-            <div className="error_label">Email or Password invalid</div>
-          ) : null}
-          <FormErrors formErrors={this.state.formErrors} />
-        </form>
+      <div className="container">
+        <div className="signin_wrapper" style={{ marginTop: "100px" }}>
+          <form onSubmit={this.handleSubmit}>
+            <h2>Please Login</h2>
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="email"
+              placeholder="email"
+              value={this.state.email}
+            />
+            <input
+              onChange={this.handleChange}
+              name="password"
+              type="password"
+              placeholder="password"
+              value={this.state.password}
+            />
+            <input
+              disabled={!this.state.formValid}
+              type="submit"
+              value="login"
+            />
+            {this.state.loginError ? (
+              <div className="error_label">Email or Password invalid</div>
+            ) : null}
+            <FormErrors formErrors={this.state.formErrors} />
+          </form>
+        </div>
       </div>
     );
   }
