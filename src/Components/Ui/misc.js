@@ -34,7 +34,8 @@ export const Tag = ({
 export const firebaseLooper = snapshot => {
   let data = [];
   snapshot.forEach(childSnapshot => {
-    data.push(childSnapshot.val());
+    let child = { id: childSnapshot.key, ...childSnapshot.val() };
+    data.push(child);
   });
   return data;
 };
