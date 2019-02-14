@@ -6,6 +6,7 @@ import SignIn from "./Components/SignIn";
 import Dashboard from "./Components/Admin/Dashboard";
 import PrivateRoutes from "./Components/AuthRoutes/PrivateRoutes";
 import PublicRoutes from "./Components/AuthRoutes/PublicRoutes";
+import AdminMatches from "./Components/Admin/AdminMatches";
 
 const Routes = props => {
   return (
@@ -16,6 +17,12 @@ const Routes = props => {
           exact
           path="/dashboard"
           component={Dashboard}
+        />
+        <PrivateRoutes
+          {...props}
+          exact
+          path="/admin_matches"
+          component={AdminMatches}
         />
         <PublicRoutes
           restricted={false}
