@@ -4,7 +4,10 @@ import ListItem from "@material-ui/core/ListItem";
 import firebase from "firebase";
 class AdminNav extends Component {
   state = {
-    links: [{ name: "Item 1", to: "/item1" }, { name: "Item 2", to: "/item2" }]
+    links: [
+      { name: "matches", to: "/admin_matches" },
+      { name: "Item 2", to: "/item2" }
+    ]
   };
 
   renderLinks = () => {
