@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import AdminLayout from "../../AdminLayout";
 import { firebaseLooper, reverser } from "../../Ui/misc";
 import { firebaseMatches } from "../../../firebase";
@@ -31,13 +32,19 @@ class AdminMatches extends Component {
             <TableRow key={i}>
               <TableCell>{match.date}</TableCell>
               <TableCell>
-                {match.away} - {match.local}
+                <Link to={`/admin_matches/edit_match/${match.id}`}>
+                  {match.away} <strong>-</strong> {match.local}
+                </Link>
               </TableCell>
               <TableCell>
-                {match.resultAway} - {match.resultLocal}
+                {match.resultAway} <strong>-</strong> {match.resultLocal}
               </TableCell>
               <TableCell>
-                {match.final === "Yes" ? "Final" : "Not final yet"}
+                {match.final === "Yes" ? (
+                  <span className="matches_tag_red">Final</span>
+                ) : (
+                  <span className="matches_tag_grenn">Not played yet</span>
+                )}
               </TableCell>
             </TableRow>
           );
