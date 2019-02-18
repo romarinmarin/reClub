@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FormErrors from "../../Ui/FormErrors";
 import { firebasePromotions } from "../../../firebase";
+
 class Form extends Component {
   state = {
     email: "",
@@ -57,7 +58,6 @@ class Form extends Component {
         .equalTo(emailToSubmit)
         .once("value")
         .then(snapshot => {
-          console.log(snapshot.val());
           if (snapshot.val() === null) {
             firebasePromotions.push(dataToSubmit);
             this.setState({ formSuccess: "Congratulation" });

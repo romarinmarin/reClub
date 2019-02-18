@@ -6,7 +6,7 @@ class AdminNav extends Component {
   state = {
     links: [
       { name: "matches", to: "/admin_matches" },
-      { name: "Item 2", to: "/item2" }
+      { name: "Add Match", to: "/admin_matches/add_match" }
     ]
   };
 

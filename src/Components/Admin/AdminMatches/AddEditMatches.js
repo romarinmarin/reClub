@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { firebaseLooper, reverser } from "../../Ui/misc";
-import { firebaseDB, firebaseTeams } from "../../../firebase";
+import { firebaseDB, firebaseTeams, firebaseMatches } from "../../../firebase";
 import FormErrors from "../../Ui/FormErrors";
 import AdminLayout from "../../AdminLayout";
 
-class EditMatches extends Component {
+class AddEditMatches extends Component {
   state = {
-    matchId: this.props.match.params.id,
+    matchId: "",
     match: {},
     teams: [],
+    formType: "",
     stadiumValid: false,
     refereeValid: false,
     resultLocalValid: false,
@@ -19,13 +20,20 @@ class EditMatches extends Component {
   };
 
   componentDidMount() {
-    firebaseDB
-      .ref(`matches/${this.state.matchId}`)
-      .once("value")
-      .then(snapshot => {
-        this.updateField(snapshot.val());
-      });
+    const matchId = this.props.match.params.id;
+    if (matchId) {
+      firebaseDB
+        .ref(`matches/${matchId}`)
+        .once("value")
+        .then(snapshot => {
+          this.updateField(snapshot.val());
+          console.log(this.state.matchId, snapshot.val());
+        });
 
+      this.setState({ matchId: this.props.match.params.id, formType: "edit" });
+    } else {
+      this.setState({ formType: "add" });
+    }
     this.getListTeams();
   }
 
@@ -48,16 +56,18 @@ class EditMatches extends Component {
   };
 
   updateField = match => {
-    const entries = Object.entries(match);
-    entries.forEach(e => {
-      let tempMatch = this.state.match;
+    if (this.state.matchId !== "") {
+      const entries = Object.entries(match);
+      entries.forEach(e => {
+        let tempMatch = this.state.match;
 
-      this.setState({
-        match: { ...tempMatch, [e[0]]: e[1] },
-        [`${e[0]}Valid`]: true,
-        formValid: true
+        this.setState({
+          match: { ...tempMatch, [e[0]]: e[1] },
+          [`${e[0]}Valid`]: true,
+          formValid: true
+        });
       });
-    });
+    }
   };
 
   validateField = (fieldName, value) => {
@@ -117,8 +127,8 @@ class EditMatches extends Component {
     });
   };
 
-  succesForm = () => {
-    this.setState({ formSuccess: "Match updated" });
+  succesForm = (message = "Match updated") => {
+    this.setState({ formSuccess: message });
     setTimeout(() => {
       this.setState({ formSuccess: "" });
     }, 3000);
@@ -135,19 +145,24 @@ class EditMatches extends Component {
     let formIsValid = this.state.formValid;
 
     let dataToSubmit = { ...this.state.match };
-    console.log(dataToSubmit);
 
     if (formIsValid) {
-      firebaseDB
-        .ref(`matches/${this.state.matchId}`)
-        .update(dataToSubmit)
-        .then(() => {
-          this.succesForm();
-        })
-        .catch(e => {
-          this.setState({ formError: true });
-          console.log("error" + e);
+      if (this.state.formType === "edit")
+        firebaseDB
+          .ref(`matches/${this.state.matchId}`)
+          .update(dataToSubmit)
+          .then(() => {
+            this.succesForm();
+          })
+          .catch(e => {
+            this.setState({ formError: true });
+            console.log("error" + e);
+          });
+      else {
+        firebaseMatches.push(dataToSubmit).then(() => {
+          this.succesForm("Match added");
         });
+      }
     }
   };
   render() {
@@ -260,4 +275,4 @@ class EditMatches extends Component {
   }
 }
 
-export default EditMatches;
+export default AddEditMatches;
